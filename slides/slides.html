@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+     
+    
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      } 
+
+
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Recommendation system with GraphLab
+
+---
+
+# Agenda
+
+1. Introduction
+2. What is GraphLab
+3. What is a Factorization Recommender
+4. Demonstration
+
+---
+
+# Introduction
+
+.left-column[Hello]
+
+.right-column[
+Cully West
+
+- DSR at galvanize
+
+]
+
+---
+
+.left-column[
+## What is graphlab?
+
+<img src='http://www.dataversity.net/wp-content/uploads/2014/07/glab.png', width=50%>
+]
+
+.right-column[
+Made by Turi (formerly Dato) just bought by Apple
+
+(Proprietary) Machine Learning package for Python, but an academic license/trial is available
+
+Has some features similar to pandas as scikit-learn
+
+Core is SFrame, like a pandas DataFrame but disk-based
+
+So it's good for big data applications
+
+Also has a lot of machine learning tools built-in
+]
+
+---
+
+.left-column[
+## Recommender systems
+]
+
+.right-column[
+Many ways to make a recommender system:
+
+- Item-item similarity
+
+- Collaborative-filtering
+
+- Factorization Recommender
+
+]
+
+---
+
+.left-column[
+## Recommender Systems
+
+## Factorization Recommender
+]
+
+.right-column[
+First represent ratings as matrix
+
+- Each user represents a row
+
+- Each column represents a movie
+
+- The entries in the matrix represent a user rating for a movie
+
+Not every user has seen every movie, so we want to use the ratings we have to "fill in" the matrix and get new ratings
+]
+
+---
+
+.left-column[
+## Recommender System
+
+## Factorization Recommender
+]
+
+.right-column[
+One way to fill in the matrix is to use matrix decompostion
+
+- We use the observations we have, and decompose the matrix (SVD)
+
+- This will give us a description of the structure of the matrix
+
+- Then we can recombine the results to fill in the matrix
+]
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
