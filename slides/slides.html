@@ -128,8 +128,8 @@ class: center, middle
 # Agenda
 
 1. Introduction
-2. What is GraphLab
-3. What is a Factorization Recommender
+2. Recommenders
+3. GraphLab
 4. Demonstration
 
 ---
@@ -145,6 +145,85 @@ Cully West
 
 ]
 
+---
+
+
+## Recommender systems
+
+
+Many ways to make a recommender system:
+
+- Item-item similarity
+
+    - Uses item features to select similar items
+
+- Collaborative-filtering
+
+    - Finds users with similar ratings and uses their ratings to generate recommendations
+
+- Factorization Recommender
+
+    - Uses matrix factorization to generate ratings
+
+
+
+---
+
+## Factorization Recommender
+
+
+First represent ratings as matrix
+
+- Each row represents a user
+
+- Each column represents a movie
+
+- The entries in the matrix represent a user rating for a movie
+
+This matrix will have missing values where a user hasn't seen a movie
+
+We can use matrix decompostion to fill in these missing values, and get new recommendations
+
+---
+
+## Factorization Recommender
+
+There are several matrix decompostion techniques
+
+- Eigenvalue Decomposition
+
+- Singular Value Decomposition
+
+- QR Decomposition
+
+But the basic idea is that we can decompose a matrix into component parts
+
+For SVD:
+
+\[
+\frac{a}{v}
+\]
+$\frac{a}{b}$
+M = USV
+
+U is n by p
+---
+
+.left-column[
+## Recommender System
+
+## Factorization Recommender
+]
+
+.right-column[
+One way to fill in the matrix is to use matrix decompostion
+
+- We use the observations we have, and decompose the matrix (SVD)
+
+- This will give us a description of the structure of the matrix
+
+- Then we can recombine the results to fill in the matrix
+]
 ---
 
 .left-column[
@@ -169,64 +248,84 @@ Also has a lot of machine learning tools built-in
 
 ---
 
-.left-column[
-## Recommender systems
-]
+# SFrame
 
-.right-column[
-Many ways to make a recommender system:
+One of graphlab's data-types is the SFrame.
 
-- Item-item similarity
+It's basically a disk-based pandas DataFrame.
 
-- Collaborative-filtering
+They can be created from a number of formats:
 
-- Factorization Recommender
+- pandas DataFrame
 
-]
+- Python dict
 
----
+- Spark RDD
 
-.left-column[
-## Recommender Systems
+- csv file
 
-## Factorization Recommender
-]
-
-.right-column[
-First represent ratings as matrix
-
-- Each user represents a row
-
-- Each column represents a movie
-
-- The entries in the matrix represent a user rating for a movie
-
-Not every user has seen every movie, so we want to use the ratings we have to "fill in" the matrix and get new ratings
-]
+- etc.
 
 ---
 
-.left-column[
-## Recommender System
+GraphLab plays well with pandas
 
-## Factorization Recommender
-]
+```python
+>>> df = pd.DataFrame([[1,2],[3,4],[5,6],[7,8]], columns=['A','B'])
+>>> df
+   A  B
+0  1  2
+1  3  4
+2  5  6
+3  7  8
 
-.right-column[
-One way to fill in the matrix is to use matrix decompostion
+>>> sf = gl.SFrame(df)
+>>> sf
+Columns:
+	A	int
+	B	int
 
-- We use the observations we have, and decompose the matrix (SVD)
+Rows: 4
 
-- This will give us a description of the structure of the matrix
+Data:
++---+---+
+| A | B |
++---+---+
+| 1 | 2 |
+| 3 | 4 |
+| 5 | 6 |
+| 7 | 8 |
++---+---+
+[4 rows x 2 columns]
 
-- Then we can recombine the results to fill in the matrix
-]
+>>> 
+
+
+```
+---
+
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
-    </script>
-    <script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+    <script type="text/javascript">
       var slideshow = remark.create();
+
+      // Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          //skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+              inlineMath: [['$','$']]
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          $(MathJax.Hub.getAllJax()).map(function(index, elem) {
+              return(elem.SourceElement());
+          }).parent().addClass('has-jax');
+      });
+
+      MathJax.Hub.Configured(); 
+      
     </script>
   </body>
 </html>
