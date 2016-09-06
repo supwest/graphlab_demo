@@ -148,8 +148,9 @@ Cully West
 ---
 
 
-## Recommender systems
+# Recommender systems
 
+Want to use observed preferences to recommend new products
 
 Many ways to make a recommender system:
 
@@ -171,7 +172,7 @@ Many ways to make a recommender system:
 
 ---
 
-## Factorization Recommender
+# Factorization Recommender
 
 
 First represent ratings as matrix
@@ -188,7 +189,7 @@ We can use matrix decompostion to fill in these missing values, and get new reco
 
 ---
 
-## Matrix Factorization
+# Matrix Factorization
 
 There are several matrix decompostion techniques
 
@@ -202,10 +203,13 @@ But the basic idea is that we can decompose a matrix into component parts
 
 For SVD:
 
-$\mathbf{M}=\mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}$
+\begin{equation}
+\mathbf{M}=\mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}
+\end{equation}
 
 And use these component parts to help with recommendations
 ---
+# SVD and Recommenders
 
 If $\mathbf{M}$ is a $n \times n$ matrix, then the singular value decomposition is
 
@@ -263,13 +267,11 @@ So our predicted ratings matrix is obtained by
 
 ---
 
-.left-column[
-## Recommender System
 
-## Factorization Recommender
-]
+# Factorization Recommender
 
-.right-column[
+
+
 One way to fill in the matrix is to use matrix decompostion
 
 - We use the observations we have, and decompose the matrix (SVD)
@@ -277,50 +279,35 @@ One way to fill in the matrix is to use matrix decompostion
 - This will give us a description of the structure of the matrix
 
 - Then we can recombine the results to fill in the matrix
-]
----
-
-.left-column[
-## What is graphlab?
-
-<img src='http://www.dataversity.net/wp-content/uploads/2014/07/glab.png', width=50%>
-]
-
-.right-column[
-Made by Turi (formerly Dato) just bought by Apple
-
-(Proprietary) Machine Learning package for Python, but an academic license/trial is available
-
-Has some features similar to pandas as scikit-learn
-
-Core is SFrame, like a pandas DataFrame but disk-based
-
-So it's good for big data applications
-
-Also has a lot of machine learning tools built-in
-]
 
 ---
 
-# SFrame
 
-One of graphlab's data-types is the SFrame.
+# <img src='http://www.dataversity.net/wp-content/uploads/2014/07/glab.png', width=10%> GraphLab 
 
-It's basically a disk-based pandas DataFrame.
+Machine Learning platform for Python
 
-They can be created from a number of formats:
+- Proprietary
 
-- pandas DataFrame
+- But academic license available
 
-- Python dict
+Uses SFrame
 
-- Spark RDD
+- A disk based dataframe (big data)
 
-- csv file
+SFrames can be created from many sources
 
-- etc.
+- RDD, CSV, pandas dataframe, Python dicts, etc.
+
+- Read from S3, HDFS, url
+
+Has a lot of machine learning tools build in
+
+- A combination of pandas and scikit learn
+
 
 ---
+
 
 GraphLab plays well with pandas
 
