@@ -165,6 +165,8 @@ Many ways to make a recommender system:
 
     - Uses matrix factorization to generate ratings
 
+    - A lot of attention from the Netflix prize competition
+
 
 
 ---
@@ -186,7 +188,7 @@ We can use matrix decompostion to fill in these missing values, and get new reco
 
 ---
 
-## Factorization Recommender
+## Matrix Factorization
 
 There are several matrix decompostion techniques
 
@@ -200,13 +202,65 @@ But the basic idea is that we can decompose a matrix into component parts
 
 For SVD:
 
-\[
-\frac{a}{v}
-\]
-$\frac{a}{b}$
-M = USV
+$\mathbf{M}=\mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}$
 
-U is n by p
+And use these component parts to help with recommendations
+---
+
+If $\mathbf{M}$ is a $n \times n$ matrix, then the singular value decomposition is
+
+\begin{equation}
+\mathbf{M} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^{T}
+\end{equation}
+
+Both $\mathbf{U}$ and $\mathbf{V}$ are $n \times n$ and $\mathbf{\Sigma}$ is an $n \times n$ diagonal matrix.
+
+These matrices give us information about the structure of $\mathbf{M}$
+
+$\mathbf{U}$ contains information about users 
+
+- Columns represent latent factors
+
+- Rows represent user loadings on latent factors
+
+<!-- The columns represent latent factors, and the entries in a row represent a given user's loadings on those factors. -->
+
+$\mathbf{V}^{T}$ contains information about movies
+
+- Rows represent latent factors
+
+- Columns represent movie loadings on latent factors
+
+<!-- Similiary $\mathbf{V}^T$ represents information about items (e.g. movies). In this case the rows represent latent factors, and entries in a column represent a given movie's loading on those factors. -->
+
+---
+
+#Factorization Recommender
+
+To build a matrix factorization recommender we limit the number of singular values or latent features we consider.
+
+If we consider $p \lt n$ singular values, then 
+
+- we have that $\hat{\mathbf{U}}$ is $n \times p$
+
+- $\hat{\mathbf{\Sigma}}$ is $p \times p$
+
+- $\hat{\mathbf{V}}^{T}$ is $p \times n$
+
+So our predicted ratings matrix is obtained by 
+
+\begin{equation}
+\hat{\mathbf{M}} = \hat{\mathbf{U}}\hat{\mathbf{\Sigma}}\hat{\mathbf{V}}^{T}
+\end{equation}
+
+<!-- \begin{equation}
+\mathbf{M}=\mathbf{U}_{n \times p} \mathbf{\Sigma}_{p \times p}\mathbf{V}_{p \times n}
+\end{equation} -->
+
+<!-- \begin{equation}
+\mathbf{M} = \mathbf{U}_{n \times p}\mathbf{\Sigma}\mathbf{V}_{p \times n}
+\end{equation} -->
+
 ---
 
 .left-column[
@@ -306,7 +360,7 @@ Data:
 
 
     </textarea>
-    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
     <script type="text/javascript">
       var slideshow = remark.create();
